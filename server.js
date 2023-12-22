@@ -42,7 +42,7 @@ app.post('/sendmail', (req, res) => {
         text:message
     }
 
-    transporter.sendmail(mailOptions).then(()=>{
+    transporter.sendMail(mailOptions).then(()=>{
         res.json({
             status: "SUCCESS",
             message: "Message sent successfully"
