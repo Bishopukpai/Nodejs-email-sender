@@ -30,6 +30,29 @@ transporter.verify((error, success) =>{
     }
 })
 
+//create a route for sending emails
+
+app.post('/sendmail', (req, res) => {
+    const {to, subject, message} = req.body
+
+    const mailOptions = {
+        from: process.env.AUTH_EMAIL,
+        to:to,
+        subject:subject,
+        text:message
+    }
+
+    transporter.sendmail(mailOptions).then(()=>{
+        res.json({
+            status: "SUCCESS",
+            message: "Message sent successfully"
+        })
+    }).catch((error) => {
+        console.log(error)
+        res.json({status:"FAILED", message: "An error occured!"})
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
