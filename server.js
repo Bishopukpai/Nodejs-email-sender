@@ -19,6 +19,19 @@ const transporter = nodemailer.createTransport({
     }
 })
 
+//Second approach of sending emails through google 0Auth
+
+/**const transporter_pro = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        type: "OAuth2",
+        user: process.env.AUTH_EMAIL,
+        clientId:process.env.AUTH_CLIENT_ID,
+        clientSecret:process.env.AUTH_CLIENT_SECRET,
+        refreshToken:process.env.AUTH_REFRESH_TOKEN
+    }
+})**/
+
 //test the nodemailer transporter 
 
 transporter.verify((error, success) =>{
